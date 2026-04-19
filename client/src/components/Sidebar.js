@@ -160,7 +160,6 @@ export default function Sidebar() {
           background: 'var(--surface)',
           border: '1px solid var(--border-color)',
           cursor: 'pointer',
-          display: 'none',
         }}
         className="lg:hidden"
       >

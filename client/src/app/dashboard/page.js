@@ -150,7 +150,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Stat grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 16 }}>
+      <div className="responsive-grid">
         <StatCard icon={DollarSign} label="This Month" value={formatCurrency(thisMonth)}
           sub={<span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
             {monthChange <= 0 ? <TrendingDown size={14} /> : <TrendingUp size={14} />}
@@ -200,7 +200,7 @@ export default function DashboardPage() {
             <AlertTriangle size={16} style={{ color: 'var(--danger)' }} />
             <h3 style={{ fontWeight: 600, color: 'var(--danger)', fontSize: 14 }}>Budget Exceeded</h3>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12 }}>
+          <div className="responsive-grid" style={{ gap: 12 }}>
             {exceeded.map((b) => (
               <div key={b.category} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderRadius: 'var(--radius-sm)', padding: 12, background: 'var(--surface)', border: '1px solid var(--border-color)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -218,7 +218,7 @@ export default function DashboardPage() {
       )}
 
       {/* Charts */}
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 16 }} className="lg:grid-cols-[2fr_1fr] max-lg:grid-cols-1">
+      <div style={{ display: 'grid', gap: 16 }} className="lg:grid-cols-[2fr_1fr] grid-cols-1">
         <Card>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
             <h2 style={{ fontSize: 15, fontWeight: 600, color: 'var(--foreground)' }}>Monthly Spending</h2>

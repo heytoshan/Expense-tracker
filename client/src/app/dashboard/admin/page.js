@@ -109,7 +109,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Stats Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 20 }}>
+      <div className="responsive-grid">
         <StatCard 
           icon={Users} 
           label="Total Community" 
@@ -147,15 +147,15 @@ export default function AdminDashboard() {
           <h3 style={{ fontSize: 16, fontWeight: 600 }}>User Management</h3>
         </div>
         
-        <div style={{ overflowX: 'auto' }}>
+        <div className="scroll-x">
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
               <tr style={{ borderBottom: '1px solid var(--border-color)', background: 'var(--background)' }}>
                 <th style={thStyle}>User</th>
                 <th style={thStyle}>Role</th>
                 <th style={thStyle}>Status</th>
-                <th style={thStyle}>Activity</th>
-                <th style={thStyle}>Joined</th>
+                <th style={thStyle} className="hide-on-mobile">Activity</th>
+                <th style={thStyle} className="hide-on-mobile">Joined</th>
                 <th style={{ ...thStyle, textAlign: 'right' }}>Actions</th>
               </tr>
             </thead>
@@ -178,7 +178,7 @@ export default function AdminDashboard() {
                       {user.status}
                     </Badge>
                   </td>
-                  <td style={tdStyle}>
+                  <td style={tdStyle} className="hide-on-mobile">
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                       <span style={{ fontSize: 12 }}>{user.totalLogins} logins</span>
                       {user.lastLogin && (
@@ -188,7 +188,7 @@ export default function AdminDashboard() {
                       )}
                     </div>
                   </td>
-                  <td style={tdStyle}>
+                  <td style={tdStyle} className="hide-on-mobile">
                     <span style={{ fontSize: 12, color: 'var(--muted)' }}>
                       {new Date(user.createdAt).toLocaleDateString()}
                     </span>

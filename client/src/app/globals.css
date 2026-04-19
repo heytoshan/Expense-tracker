@@ -71,6 +71,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
   font-size: 14px;
+  overflow-x: hidden;
+}
+
+@media (max-width: 1024px) {
+  body {
+    padding-top: 56px; /* Space for the hamburger toggle */
+  }
 }
 
 /* ── Scrollbar ── */
@@ -157,3 +164,30 @@ body, aside {
   background: color-mix(in srgb, var(--primary) 20%, transparent);
   color: var(--foreground);
 }
+
+/* ── Responsive Helpers ── */
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .responsive-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
+.scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
