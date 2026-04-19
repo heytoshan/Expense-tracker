@@ -61,7 +61,7 @@ export default function AnalyticsPage() {
     responsive: true, maintainAspectRatio: false,
     plugins: { legend: { display: false }, tooltip: { ...TOOLTIP_STYLE, callbacks: { label: (c) => formatCurrency(c.raw) } } },
     scales: {
-      y: { beginAtZero: true, grid: { color: 'rgba(148,163,184,0.08)' }, ticks: { color: '#94a3b8', font: { size: 11 }, callback: (v) => `$${v}` } },
+      y: { beginAtZero: true, grid: { color: 'rgba(148,163,184,0.08)' }, ticks: { color: '#94a3b8', font: { size: 11 }, callback: (v) => `₹${v}` } },
       x: { grid: { display: false }, ticks: { color: '#94a3b8', font: { size: 11 }, maxRotation: 45 } }
     }
   };
@@ -77,7 +77,7 @@ export default function AnalyticsPage() {
     responsive: true, maintainAspectRatio: false,
     plugins: { legend: { display: false }, tooltip: { ...TOOLTIP_STYLE, callbacks: { label: (c) => formatCurrency(c.raw) } } },
     scales: {
-      y: { beginAtZero: true, grid: { color: 'rgba(148,163,184,0.08)' }, ticks: { color: '#94a3b8', font: { size: 11 }, callback: (v) => `$${v}` } },
+      y: { beginAtZero: true, grid: { color: 'rgba(148,163,184,0.08)' }, ticks: { color: '#94a3b8', font: { size: 11 }, callback: (v) => `₹${v}` } },
       x: { grid: { display: false }, ticks: { color: '#94a3b8', font: { size: 11 }, maxRotation: 45 } }
     }
   };

@@ -183,14 +183,14 @@ export default function AdminDashboard() {
                       <span style={{ fontSize: 12 }}>{user.totalLogins} logins</span>
                       {user.lastLogin && (
                         <span style={{ fontSize: 11, color: 'var(--muted)' }}>
-                          Last: {new Date(user.lastLogin).toLocaleDateString()}
+                          Last: {new Date(user.lastLogin).toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' })}
                         </span>
                       )}
                     </div>
                   </td>
                   <td style={tdStyle} className="hide-on-mobile">
                     <span style={{ fontSize: 12, color: 'var(--muted)' }}>
-                      {new Date(user.createdAt).toLocaleDateString()}
+                      {new Date(user.createdAt).toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' })}
                     </span>
                   </td>
                   <td style={{ ...tdStyle, textAlign: 'right' }}>

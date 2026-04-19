@@ -38,6 +38,14 @@ app.use((req, res, next) => {
 });
 
 // Routes
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'ExpenseIQ Backend API', 
+    docs: 'https://github.com/heytoshan/Expense-tracker',
+    status: 'Running' 
+  });
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/expenses', expenseRoutes);
 app.use('/api/budgets', budgetRoutes);

@@ -10,7 +10,7 @@ import {
   ArcElement, Title, Tooltip, Legend
 } from 'chart.js';
 import { Bar, Pie } from 'react-chartjs-2';
-import { TrendingUp, TrendingDown, DollarSign, Receipt, AlertTriangle, ArrowUpRight } from 'lucide-react';
+import { TrendingUp, TrendingDown, IndianRupee, Receipt, AlertTriangle, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
@@ -86,7 +86,7 @@ export default function DashboardPage() {
     responsive: true, maintainAspectRatio: false,
     plugins: { legend: { display: false }, tooltip: { ...TOOLTIP_STYLE, callbacks: { label: (c) => formatCurrency(c.raw) } } },
     scales: {
-      y: { beginAtZero: true, grid: { color: 'rgba(148,163,184,0.08)' }, ticks: { color: '#94a3b8', font: { size: 11 }, callback: (v) => `$${v}` } },
+      y: { beginAtZero: true, grid: { color: 'rgba(148,163,184,0.08)' }, ticks: { color: '#94a3b8', font: { size: 11 }, callback: (v) => `₹${v}` } },
       x: { grid: { display: false }, ticks: { color: '#94a3b8', font: { size: 11 }, maxRotation: 45 } }
     }
   };
@@ -151,7 +151,7 @@ export default function DashboardPage() {
 
       {/* Stat grid */}
       <div className="responsive-grid">
-        <StatCard icon={DollarSign} label="This Month" value={formatCurrency(thisMonth)}
+        <StatCard icon={IndianRupee} label="This Month" value={formatCurrency(thisMonth)}
           sub={<span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
             {monthChange <= 0 ? <TrendingDown size={14} /> : <TrendingUp size={14} />}
             {Math.abs(monthChange)}% vs last month
