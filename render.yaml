@@ -1,0 +1,26 @@
+services:
+  # Backend Service (Express)
+  - type: web
+    name: expenseIQ-api
+    runtime: node
+    plan: free
+    region: ohio
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node src/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        sync: false # You will set this in Render Dashboard
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: CLIENT_URL
+        sync: false # You will set this to your Vercel URL later
+
+  # Optional: For frontend tracking (Note: Vercel is better for Next.js, 
+  # but this defines the backend requirements clearly for Render)
