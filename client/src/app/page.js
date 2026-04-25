@@ -45,16 +45,10 @@ export default function HomePage() {
         </p>
 
         <div style={{ display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 80 }}>
-          <Link href="/signup" style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', borderRadius: 'var(--radius-sm)',
-            fontSize: 14, fontWeight: 600, color: '#fff', textDecoration: 'none', background: 'var(--primary)', transition: 'opacity 0.2s ease',
-          }}>
+          <Link href="/signup" className="btn-cta">
             Start Tracking Free <ArrowRight size={16} />
           </Link>
-          <Link href="/login" style={{
-            display: 'inline-flex', alignItems: 'center', padding: '12px 24px', borderRadius: 'var(--radius-sm)',
-            fontSize: 14, fontWeight: 500, color: 'var(--foreground)', textDecoration: 'none', border: '1px solid var(--border-color)',
-          }}>
+          <Link href="/login" className="btn-outline-glass">
             I have an account
           </Link>
         </div>

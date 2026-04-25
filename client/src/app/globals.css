@@ -191,3 +191,72 @@ body, aside {
   display: none;
 }
 
+/* ── Hero CTA button — gradient glow ── */
+@keyframes ctaGlow {
+  0%, 100% { box-shadow: 0 0 0px 0px color-mix(in srgb, var(--primary) 0%, transparent); }
+  50%       { box-shadow: 0 0 18px 4px color-mix(in srgb, var(--primary) 45%, transparent); }
+}
+
+@keyframes ctaSweep {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 26px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(
+    120deg,
+    var(--primary) 0%,
+    var(--primary-light) 40%,
+    #a78bfa 60%,
+    var(--primary) 100%
+  );
+  background-size: 300% 100%;
+  background-position: 0% center;
+  animation: ctaGlow 3s ease-in-out infinite;
+  transition: background-position 0.6s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  letter-spacing: 0.01em;
+}
+
+.btn-cta:hover {
+  background-position: 100% center;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--primary) 40%, transparent);
+  animation: none;
+}
+
+.btn-cta:active {
+  transform: translateY(0px) scale(0.99);
+}
+
+/* ── Hero secondary button — glass outline ── */
+.btn-outline-glass {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--foreground);
+  text-decoration: none;
+  border: 1px solid var(--border-color);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.2s ease;
+}
+
+.btn-outline-glass:hover {
+  border-color: var(--primary-light);
+  background: color-mix(in srgb, var(--primary) 6%, var(--surface));
+  transform: translateY(-1px);
+}
+
