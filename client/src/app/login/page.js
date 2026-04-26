@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { Button, Input } from '@/components/ui';
 import toast from 'react-hot-toast';
-import { Eye, EyeOff, ArrowRight } from 'lucide-react';
+import { Eye, EyeOff, ArrowRight, ChevronLeft } from 'lucide-react';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -44,6 +44,20 @@ export default function LoginPage() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--background)', padding: 24 }}>
       <div style={{ width: '100%', maxWidth: 400 }}>
+        {/* Back to home */}
+        <Link
+          href="/"
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: 4, marginBottom: 24,
+            fontSize: 13, color: 'var(--muted)', textDecoration: 'none',
+            transition: 'color 0.2s ease',
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--foreground)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--muted)'; }}
+        >
+          <ChevronLeft size={15} /> Back to home
+        </Link>
+
         {/* Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 32 }}>
           <div style={{ width: 36, height: 36, borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--primary)' }}>
@@ -116,6 +130,15 @@ export default function LoginPage() {
               Sign In
               <ArrowRight size={16} style={{ marginLeft: 4 }} />
             </Button>
+
+            <div style={{ textAlign: 'right', marginTop: 4 }}>
+              <span
+                style={{ fontSize: 12, color: 'var(--muted)', cursor: 'default' }}
+                title="Password reset coming soon"
+              >
+                Forgot password?
+              </span>
+            </div>
           </form>
         </div>
 

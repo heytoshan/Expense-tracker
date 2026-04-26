@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { Button, Input } from '@/components/ui';
 import toast from 'react-hot-toast';
-import { Eye, EyeOff, ArrowRight } from 'lucide-react';
+import { Eye, EyeOff, ArrowRight, ChevronLeft } from 'lucide-react';
 
 export default function SignupPage() {
   const [name, setName] = useState('');
@@ -62,6 +62,20 @@ export default function SignupPage() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--background)', padding: 24 }}>
       <div style={{ width: '100%', maxWidth: 400 }}>
+        {/* Back to home */}
+        <Link
+          href="/"
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: 4, marginBottom: 24,
+            fontSize: 13, color: 'var(--muted)', textDecoration: 'none',
+            transition: 'color 0.2s ease',
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--foreground)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--muted)'; }}
+        >
+          <ChevronLeft size={15} /> Back to home
+        </Link>
+
         {/* Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 32 }}>
           <div style={{ width: 36, height: 36, borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--primary)' }}>
