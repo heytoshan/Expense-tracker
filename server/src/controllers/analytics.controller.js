@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Expense = require('../models/Expense');
-const { catchAsync } = require('../utils/helpers');
+const { ApiError, catchAsync } = require('../utils/helpers');
 
 /**
  * GET /api/analytics/monthly
@@ -93,4 +93,62 @@ const getCategoryBreakdown = catchAsync(async (req, res) => {
   });
 });
 
-module.exports = { getMonthlySummary, getCategoryBreakdown };
+/**
+ * GET /api/analytics/daily
+ * Day-by-day spending breakdown for a given month/year.
+ * Useful for rendering trend sparklines on the dashboard.
+ *
+ * Query params:
+ *   month  – 1-12  (defaults to current month)
+ *   year   – YYYY  (defaults to current year)
+ */
+const getDailyTrend = catchAsync(async (req, res) => {
+  const now = new Date();
+  const month = parseInt(req.query.month) || now.getMonth() + 1;
+  const year  = parseInt(req.query.year)  || now.getFullYear();
+
+  if (month < 1 || month > 12) {
+    throw new ApiError(400, 'month must be between 1 and 12');
+  }
+
+  const userId    = new mongoose.Types.ObjectId(req.user.id);
+  const startDate = new Date(year, month - 1, 1);
+  const endDate   = new Date(year, month, 0, 23, 59, 59); // last day of month
+
+  const raw = await Expense.aggregate([
+    {
+      $match: {
+        user: userId,
+        date: { $gte: startDate, $lte: endDate }
+      }
+    },
+    {
+      $group: {
+        _id:   { $dayOfMonth: '$date' },
+        total: { $sum: '$amount' },
+        count: { $sum: 1 }
+      }
+    },
+    { $sort: { _id: 1 } }
+  ]);
+
+  // Build a complete day-by-day array (fills zero for days with no spend)
+  const daysInMonth = endDate.getDate();
+  const days = Array.from({ length: daysInMonth }, (_, i) => {
+    const found = raw.find((r) => r._id === i + 1);
+    return {
+      day:   i + 1,
+      total: found ? found.total : 0,
+      count: found ? found.count : 0
+    };
+  });
+
+  const monthTotal = days.reduce((sum, d) => sum + d.total, 0);
+
+  res.json({
+    success: true,
+    data: { year, month, days, monthTotal }
+  });
+});
+
+module.exports = { getMonthlySummary, getCategoryBreakdown, getDailyTrend };
